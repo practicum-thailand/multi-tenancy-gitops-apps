@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1beta1
+GapiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: ace-integration-server
@@ -191,24 +191,24 @@ spec:
         - name: ssh-directory
           workspace: gitops-repo-secret
 
-    - name: create-pull-request
-      taskRef:
-        kind: Task
-        name: github-open-pr
-      runAfter:
-        - build-integration-server
-      params:
-        - name: GITHUB_HOST_URL
-          value: api.github.com
-        - name: REPO_FULL_NAME
-          value: $(params.gitops-apps-repo-full-name)
-        - name: HEAD
-          value: $(context.pipeline.name)-$(context.pipelineRun.name)
-        - name: BASE
-          value: master
-        - name: TITLE
-          value: $(params.github-pr-title)
-        - name: BODY
-          value: $(params.github-pr-body)
-        - name: GITHUB_TOKEN_SECRET_NAME
-          value: $(params.github-pr-token-secret-name)
+    # - name: create-pull-request
+    #   taskRef:
+    #     kind: Task
+    #     name: github-open-pr
+    #   runAfter:
+    #     - build-integration-server
+    #   params:
+    #     - name: GITHUB_HOST_URL
+    #       value: api.github.com
+    #     - name: REPO_FULL_NAME
+    #       value: $(params.gitops-apps-repo-full-name)
+    #     - name: HEAD
+    #       value: $(context.pipeline.name)-$(context.pipelineRun.name)
+    #     - name: BASE
+    #       value: master
+    #     - name: TITLE
+    #       value: $(params.github-pr-title)
+    #     - name: BODY
+    #       value: $(params.github-pr-body)
+    #     - name: GITHUB_TOKEN_SECRET_NAME
+    #       value: $(params.github-pr-token-secret-name)
