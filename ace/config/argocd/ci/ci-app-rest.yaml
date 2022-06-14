@@ -4,8 +4,8 @@ metadata:
   name: apps-ace-rest-ci-1
   annotations:
     argocd.argoproj.io/sync-wave: "300"
-#  finalizers:
-#    - resources-finalizer.argocd.argoproj.io
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: ci
@@ -18,5 +18,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      allowEmpty: true
       selfHeal: true
